@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.numbergrid.QuarteredView
-        android:id="@+id/quarteredView3"
-        android:layout_width="370dp"
-        android:layout_height="327dp"
+    <com.example.numbergrid.NumberGridView
+        android:id="@+id/numberGridView2"
+        android:layout_width="355dp"
+        android:layout_height="367dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

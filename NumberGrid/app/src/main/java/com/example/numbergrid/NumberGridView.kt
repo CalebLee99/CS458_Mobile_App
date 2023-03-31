@@ -144,6 +144,10 @@ class NumberGridView (context: Context?, attrs: AttributeSet?) : View(context, a
         Log.v("Row Index", indexRow.toString())
 
         numberGrid[indexCol][indexRow] = numberGrid[indexCol][indexRow] + 1
+        if (numberGrid[indexCol][indexRow] > 9)
+        {
+            numberGrid[indexCol][indexRow] = 0
+        }
         invalidate()
         return true
     }

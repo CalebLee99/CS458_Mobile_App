@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import net.objecthunter.exp4j.ExpressionBuilder
 
 class MainActivity : AppCompatActivity() {
-    var currentValue = 0
+    var currentValue = "" // Value being displayed on screen.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,17 +26,40 @@ class MainActivity : AppCompatActivity() {
     // Common Attributes -> onClick
     fun clearPressed(view: View) // Add the view parameter to attach a function to a button
     {
-        currentValue = 0;
+        currentValue = ""
         updateDisplay();
     }
 
     fun numberButtonPressed(view: View)
     {
         val button = view as Button // Convert view as button.
-        val digit = button.text.toString().toInt()
-        //currentValue = digit
-        currentValue *= 10
-        currentValue += digit
+        val digit = button.text.toString()
+        currentValue = currentValue.plus(digit)
         updateDisplay()
     }
+
+    fun operatorButtonPressed(view: View)
+    {
+        val button = view as Button // Convert view as button.
+        val op = button.text.toString()
+        currentValue = currentValue.plus(op)
+        updateDisplay()
+    }
+
+    fun calculate(view: View)
+    {
+        val expression = ExpressionBuilder(currentValue).build()
+        val result = expression.evaluate()
+        val longResult = result.toLong()
+        if (result == longResult.toDouble())
+        {
+            currentValue = longResult.toString()
+        }
+        else
+        {
+            currentValue = result.toString()
+        }
+        updateDisplay()
+    }
+
 }

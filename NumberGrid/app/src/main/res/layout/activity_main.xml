@@ -8,8 +8,8 @@
 
     <com.example.numbergrid.NumberGridView
         android:id="@+id/numberGridView2"
-        android:layout_width="355dp"
-        android:layout_height="367dp"
+        android:layout_width="317dp"
+        android:layout_height="457dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

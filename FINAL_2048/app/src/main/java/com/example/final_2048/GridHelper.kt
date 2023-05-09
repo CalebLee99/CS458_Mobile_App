@@ -44,10 +44,13 @@ class GridHelper (context: Context?, attrs: AttributeSet?) : View(context, attrs
                 val tileValue = board[i][j]
                 val tileText = if (tileValue > 0) tileValue.toString() else "0"
                 tiles[i][j]?.text = tileText
-                tiles[i][j]?.setBackgroundColor(getTileColor(tileValue))
+                tiles[i][j]?.setTextColor(getTileColor(tileValue))
+                tiles[i][j]?.textSize = 100 / tileText.length.toFloat()
             }
         }
     }
+
+
 
     private fun getTileColor(value: Int): Int {
         return when (value) {

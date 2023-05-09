@@ -43,42 +43,47 @@ class GameLogic
 
     // Move the tiles on the board
     // Getting an error when two tiles merge at the same time. Index out of bounds.
-    fun move(direction: Direction)
-    {
-        for (i in 0 until gridSize)
-        {
+    fun move(direction: Direction) {
+        for (i in 0 until gridSize) {
             val tiles = mutableListOf<Int>()
-            for (j in 0 until gridSize)
-            {
+            for (j in 0 until gridSize) {
                 val tile = getTile(direction, i, j)
 
-                if (tile != 0)
-                {
+                if (tile != 0) {
                     tiles.add(tile)
                 }
             }
 
-            mergeTiles(tiles)
+            val mergedTiles = mergeTiles(tiles)
 
-            for (j in 0 until gridSize)
-            {
-                val tile = if (j < tiles.size) tiles[j] else 0
+            for (j in 0 until gridSize) {
+                val tile = if (j < mergedTiles.size) mergedTiles[j] else 0
                 setTile(direction, i, j, tile)
             }
         }
     }
 
     // Merge adjacent tiles
-    private fun mergeTiles(tiles: MutableList<Int>)
-    {
-        for (i in 0 until tiles.size - 1)
-        {
-            if (tiles[i] == tiles[i + 1])
-            {
-                tiles[i] *= 2
-                tiles.removeAt(i + 1)
+    private fun mergeTiles(tiles: MutableList<Int>): MutableList<Int> {
+        val mergedTiles = mutableListOf<Int>()
+        var skipNext = false
+
+        for (i in 0 until tiles.size) {
+            if (skipNext) {
+                skipNext = false
+                continue
+            }
+
+            if (i < tiles.size - 1 && tiles[i] == tiles[i + 1]) {
+                mergedTiles.add(tiles[i] * 2)
+                skipNext = true
+            } else {
+                mergedTiles.add(tiles[i])
+                skipNext = false
             }
         }
+
+        return mergedTiles
     }
 
 

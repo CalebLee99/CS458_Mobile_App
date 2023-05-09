@@ -16,8 +16,8 @@ class NumberGridView (context: Context?, attrs: AttributeSet?) : View(context, a
 {
     private var mWidth : Float = 0.0f
     private var mHeight : Float = 0.0f
-    private var row : Int = 10
-    private var col : Int = 10
+    private var row : Int = 4
+    private var col : Int = 4
     private var mTenthWidth = 0.0f
     private var mTenthHeight =0.0f
     private lateinit var mCanvas : Canvas
@@ -35,6 +35,8 @@ class NumberGridView (context: Context?, attrs: AttributeSet?) : View(context, a
         }
         return super.onTouchEvent(event)
     }
+
+
 
     private fun populateGrid()
     {
@@ -142,7 +144,6 @@ class NumberGridView (context: Context?, attrs: AttributeSet?) : View(context, a
         val indexRow = row.toInt()
         Log.v("Col Index", indexCol.toString())
         Log.v("Row Index", indexRow.toString())
-
         numberGrid[indexCol][indexRow] = numberGrid[indexCol][indexRow] + 1
         if (numberGrid[indexCol][indexRow] > 9)
         {
